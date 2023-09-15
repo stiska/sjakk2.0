@@ -16,6 +16,32 @@ function initiateMove(id) {
   determinedMove(square);
 }
 
+function movePiece(id) {
+  let squareToMoveTo = getSquareById(id);
+  applyColor();
+  squareToMoveTo.currentPiece = model.squareWithPieceToMove.currentPiece;
+  model.squareWithPieceToMove.currentPiece = null;
+  model.squareWithPieceToMove = null;
+  switchTurn();
+  uppdateView();
+}
+
+function checkIfFriendly(i, square) {
+  if (
+    model.board[i].currentPiece != null &&
+    model.board[i].currentPiece.color != square.currentPiece.color
+  ) {
+    model.board[i].color = model.legalMoveColor;
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function highlightSelected(square) {
+  square.color = model.selecktedColor;
+}
+
 function determinedMove(square) {
   switch (square.currentPiece.type) {
     case "king":
@@ -39,29 +65,4 @@ function determinedMove(square) {
     default:
       console.log("Get Rekt Pleb");
   }
-}
-
-function movePiece(id) {
-  let squareToMoveTo = getSquareById(id);
-  applyColor();
-  squareToMoveTo.currentPiece = model.squareWithPieceToMove.currentPiece;
-  model.squareWithPieceToMove.currentPiece = null;
-  model.squareWithPieceToMove = null;
-  uppdateView();
-}
-
-function checkIfFriendly(i, square) {
-  if (
-    model.board[i].currentPiece != null &&
-    model.board[i].currentPiece.color != square.currentPiece.color
-  ) {
-    model.board[i].color = model.legalMoveColor;
-    return false;
-  } else {
-    return true;
-  }
-}
-
-function highlightSelected(square) {
-  square.color = model.selecktedColor;
 }
