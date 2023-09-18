@@ -37,7 +37,7 @@ function applyColor() {
 function populateBoard() {
   let square = null;
   for (let i = 0; i < model.InPlayPieces.length; i++) {
-    square = getSquareById(model.InPlayPieces[i].possison);
+    square = getSquareById(model.InPlayPieces[i].startPossison);
     square.currentPiece = model.InPlayPieces[i];
   }
 }

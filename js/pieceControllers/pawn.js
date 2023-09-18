@@ -30,18 +30,37 @@ function pawnForward(square, index) {
 }
 function pawnLongForward(square, index) {
   let i = square.index;
-  if (
-    model.board[i + index].currentPiece == null &&
-    square.currentPiece.hasMoved == false
-  ) {
+  if (square.currentPiece.hasMoved == true) {
+    return;
+  }
+  if (model.board[i + index].currentPiece == null) {
     model.board[i + index].color = model.legalMoveColor;
-    square.currentPiece.hasMoved = true;
   }
 }
 
 function pawnAttack(square, index) {
   let i = square.index;
-  if (i + index <= 63 && i - index >= 0) {
+  if (i + index <= 63 && i + index >= 0) {
     checkIfFriendly(i + index, square);
+    if (i + index == model.enPassantIndex) {
+      model.board[i + index].color = model.legalMoveColor;
+    }
+  }
+}
+
+function setEnPassantIndex(squareToMoveTo) {
+  if (model.squareWithPieceToMove.currentPiece.hasMoved == false) {
+    if (
+      model.squareWithPieceToMove.currentPiece.color == "white" &&
+      getIntId(squareToMoveTo.id[1]) - 2 == 2
+    ) {
+      model.enPassantIndex = squareToMoveTo.index - 1;
+    }
+    if (
+      model.squareWithPieceToMove.currentPiece.color == "black" &&
+      getIntId(squareToMoveTo.id[1]) + 2 == 7
+    ) {
+      model.enPassantIndex = squareToMoveTo.index + 1;
+    }
   }
 }

@@ -25,18 +25,27 @@ function initiateMove(id) {
   determinedMove(square);
 }
 
-function resetSelected() {
-  applyColor();
-  model.squareWithPieceToMove = null;
-  uppdateView();
-}
-
 function movePiece(id) {
   let squareToMoveTo = getSquareById(id);
-  applyColor();
+  if (squareToMoveTo.index == model.enPassantIndex) {
+    if (model.squareWithPieceToMove.currentPiece.color == "black") {
+      model.board[model.enPassantIndex + 1].currentPiece = null;
+    } else {
+      model.board[model.enPassantIndex - 1].currentPiece = null;
+    }
+  }
+
+  model.enPassantIndex = null;
+  if (model.squareWithPieceToMove.currentPiece.type == "pawn") {
+    setEnPassantIndex(squareToMoveTo);
+  }
+  if (model.squareWithPieceToMove.currentPiece.hasMoved == false) {
+    model.squareWithPieceToMove.currentPiece.hasMoved = true;
+  }
   squareToMoveTo.currentPiece = model.squareWithPieceToMove.currentPiece;
   model.squareWithPieceToMove.currentPiece = null;
   model.squareWithPieceToMove = null;
+  applyColor();
   switchTurn();
   uppdateView();
 }
@@ -51,6 +60,12 @@ function checkIfFriendly(i, square) {
   } else {
     return true;
   }
+}
+
+function resetSelected() {
+  applyColor();
+  model.squareWithPieceToMove = null;
+  uppdateView();
 }
 
 function highlightSelected(square) {
