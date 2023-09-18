@@ -2,7 +2,7 @@ const model = {
   //app
   curentPage: "game",
   colorToMove: "white",
-  lastMovedPieceIndex: 0, // onpesant ??
+  enPassantIndex: null,
   modal: "none",
   currentIndexOfWhiteKing: 32,
   whiteCheck: false,

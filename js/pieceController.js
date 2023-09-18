@@ -8,12 +8,27 @@ function initiateMove(id) {
     return;
   }
   if (square.currentPiece == null) {
+    resetSelected();
     return;
   }
   if (square.currentPiece.color != model.colorToMove) {
+    resetSelected();
+    return;
+  }
+  if (
+    model.squareWithPieceToMove != null &&
+    model.squareWithPieceToMove != square.currentPiece
+  ) {
+    resetSelected();
     return;
   }
   determinedMove(square);
+}
+
+function resetSelected() {
+  applyColor();
+  model.squareWithPieceToMove = null;
+  uppdateView();
 }
 
 function movePiece(id) {
