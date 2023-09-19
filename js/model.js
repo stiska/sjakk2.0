@@ -14,6 +14,7 @@ const model = {
   blackColor: "#800000",
   whiteColor: "#ffffff",
   squareWithPieceToMove: null,
+  promotionIndex: null,
 
   //data
   legalMoveColor: "#808080",

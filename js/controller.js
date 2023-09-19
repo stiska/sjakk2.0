@@ -21,3 +21,12 @@ function switchTurn() {
     model.colorToMove = "white";
   } else model.colorToMove = "black";
 }
+
+function toggleModal() {
+  if (model.modal == "none") {
+    model.modal = "block";
+  } else {
+    model.modal = "none";
+  }
+  uppdateView();
+}

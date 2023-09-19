@@ -64,3 +64,15 @@ function setEnPassantIndex(squareToMoveTo) {
     }
   }
 }
+
+function promotePawn(type, imgIndex) {
+  model.board[model.promotionIndex].currentPiece.type = type;
+  if (model.board[model.promotionIndex].currentPiece.color == "black") {
+    model.board[model.promotionIndex].currentPiece.imageLink =
+      model.promoteBlackImg[imgIndex];
+  } else {
+    model.board[model.promotionIndex].currentPiece.imageLink =
+      model.promoteWhiteImg[imgIndex];
+  }
+  toggleModal();
+}

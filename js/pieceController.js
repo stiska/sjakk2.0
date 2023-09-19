@@ -27,6 +27,15 @@ function initiateMove(id) {
 
 function movePiece(id) {
   let squareToMoveTo = getSquareById(id);
+  if (
+    squareToMoveTo.id[1] == "1" ||
+    (squareToMoveTo.id[1] == "8" &&
+      model.squareWithPieceToMove.currentPiece.type == "pawn")
+  ) {
+    model.promotionIndex = squareToMoveTo.index;
+    toggleModal();
+  }
+
   if (squareToMoveTo.index == model.enPassantIndex) {
     if (model.squareWithPieceToMove.currentPiece.color == "black") {
       model.board[model.enPassantIndex + 1].currentPiece = null;
