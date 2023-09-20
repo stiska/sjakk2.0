@@ -28,7 +28,8 @@ function initiateMove(id) {
 function movePiece(id) {
   let squareToMoveTo = getSquareById(id);
   if (
-    squareToMoveTo.id[1] == "1" ||
+    (squareToMoveTo.id[1] == "1" &&
+      model.squareWithPieceToMove.currentPiece.type == "pawn") ||
     (squareToMoveTo.id[1] == "8" &&
       model.squareWithPieceToMove.currentPiece.type == "pawn")
   ) {
