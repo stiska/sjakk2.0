@@ -1,4 +1,3 @@
-//burde bytte navn
 function LongMove(square, i, index, endpoint) {
   if (model.board[i].id[index] == endpoint) {
     checkIfFriendly(i, square);

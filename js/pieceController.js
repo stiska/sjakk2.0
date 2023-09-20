@@ -27,6 +27,7 @@ function initiateMove(id) {
 
 function movePiece(id) {
   let squareToMoveTo = getSquareById(id);
+
   if (model.squareWithPieceToMove.currentPiece.type == "pawn") {
     checkPawnPromotion(squareToMoveTo);
     if (squareToMoveTo.index == model.enPassantIndex) {
@@ -40,9 +41,16 @@ function movePiece(id) {
   if (model.squareWithPieceToMove.currentPiece.hasMoved == false) {
     model.squareWithPieceToMove.currentPiece.hasMoved = true;
   }
+  if (
+    squareToMoveTo.currentPiece != null &&
+    squareToMoveTo.currentPiece.type == "king"
+  ) {
+    model.hasWon = model.squareWithPieceToMove.currentPiece.color;
+  }
   squareToMoveTo.currentPiece = model.squareWithPieceToMove.currentPiece;
   model.squareWithPieceToMove.currentPiece = null;
   model.squareWithPieceToMove = null;
+
   applyColor();
   switchTurn();
   uppdateView();

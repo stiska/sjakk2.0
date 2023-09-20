@@ -22,7 +22,7 @@ function uppdateViewBoard() {
         </div>
       </div>
     </div>
-      <div class="whosTurn">${model.colorToMove} to move</div><br>  
+      <div class="whosTurn">${topBarContent()}</div><br>  
         <div class="board-container">
           <div class="board">${drawBoard()}</div>
         </div>
@@ -52,6 +52,16 @@ function drawPiese(i) {
   let html = ``;
   if (model.board[i].currentPiece != null) {
     html = `<img class="piece" src="${model.board[i].currentPiece.imageLink}" />`;
+  }
+  return html;
+}
+
+function topBarContent() {
+  let html = ``;
+  if (model.hasWon == null) {
+    html = `${model.colorToMove} to move`;
+  } else {
+    html = `${model.hasWon} is the winner`;
   }
   return html;
 }

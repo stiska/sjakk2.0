@@ -2,15 +2,11 @@ const model = {
   //app
   curentPage: "game",
   colorToMove: "white",
+  hasWon: null,
   enPassantIndex: null,
   modal: "none",
-  currentIndexOfWhiteKing: 32,
-  whiteCheck: false,
-  currentIndexOfBlackKing: 39,
-  blackCheck: false,
-
   //inputs
-  isPiecePrimed: false,
+
   blackColor: "#800000",
   whiteColor: "#ffffff",
   squareWithPieceToMove: null,
@@ -19,8 +15,6 @@ const model = {
   //data
   legalMoveColor: "#808080",
   selecktedColor: "#6dc544",
-  idLeters: ["a", "b", "c", "d", "e", "f", "g", "h"], // do i need these?
-  idNumbers: ["1", "2", "3", "4", "5", "6", "7", "8"], // do i need these?
   board: [],
   promoteBlackImg: [
     "img/black queen.png",

@@ -5,6 +5,17 @@ function getSquareById(id) {
   }
 }
 
+function getSquareByPieceId(id) {
+  for (let i = 0; i < model.board.length; i++) {
+    if (
+      model.board[i].currentPiece != null &&
+      model.board[i].currentPiece.id == id
+    ) {
+      return model.board[i];
+    }
+  }
+}
+
 function getIntId(id) {
   let result = parseInt(id);
   return result;
