@@ -27,24 +27,12 @@ function initiateMove(id) {
 
 function movePiece(id) {
   let squareToMoveTo = getSquareById(id);
-  if (
-    (squareToMoveTo.id[1] == "1" &&
-      model.squareWithPieceToMove.currentPiece.type == "pawn") ||
-    (squareToMoveTo.id[1] == "8" &&
-      model.squareWithPieceToMove.currentPiece.type == "pawn")
-  ) {
-    model.promotionIndex = squareToMoveTo.index;
-    toggleModal();
-  }
-
-  if (squareToMoveTo.index == model.enPassantIndex) {
-    if (model.squareWithPieceToMove.currentPiece.color == "black") {
-      model.board[model.enPassantIndex + 1].currentPiece = null;
-    } else {
-      model.board[model.enPassantIndex - 1].currentPiece = null;
+  if (model.squareWithPieceToMove.currentPiece.type == "pawn") {
+    checkPawnPromotion(squareToMoveTo);
+    if (squareToMoveTo.index == model.enPassantIndex) {
+      removeEnPassant(squareToMoveTo);
     }
   }
-
   model.enPassantIndex = null;
   if (model.squareWithPieceToMove.currentPiece.type == "pawn") {
     setEnPassantIndex(squareToMoveTo);
@@ -58,6 +46,21 @@ function movePiece(id) {
   applyColor();
   switchTurn();
   uppdateView();
+}
+
+function checkPawnPromotion(squareToMoveTo) {
+  if (squareToMoveTo.id[1] == "1" || squareToMoveTo.id[1] == "8") {
+    model.promotionIndex = squareToMoveTo.index;
+    toggleModal();
+  }
+}
+
+function removeEnPassant() {
+  if (model.squareWithPieceToMove.currentPiece.color == "black") {
+    model.board[model.enPassantIndex + 1].currentPiece = null;
+  } else {
+    model.board[model.enPassantIndex - 1].currentPiece = null;
+  }
 }
 
 function checkIfFriendly(i, square) {

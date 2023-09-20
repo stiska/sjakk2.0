@@ -28,6 +28,7 @@ function pawnForward(square, index) {
     return false;
   }
 }
+
 function pawnLongForward(square, index) {
   let i = square.index;
   if (square.currentPiece.hasMoved == true) {
