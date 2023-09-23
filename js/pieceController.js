@@ -48,9 +48,15 @@ function movePiece(id) {
     model.hasWon = model.squareWithPieceToMove.currentPiece.color;
   }
   squareToMoveTo.currentPiece = model.squareWithPieceToMove.currentPiece;
+  if (
+    squareToMoveTo.currentPiece != null &&
+    squareToMoveTo.currentPiece.type == "king"
+  ) {
+    uppdateKingPossison(squareToMoveTo);
+  }
   model.squareWithPieceToMove.currentPiece = null;
   model.squareWithPieceToMove = null;
-
+  checks(opositCollor(squareToMoveTo.currentPiece.color));
   applyColor();
   switchTurn();
   uppdateView();

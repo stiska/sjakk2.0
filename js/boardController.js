@@ -39,5 +39,8 @@ function populateBoard() {
   for (let i = 0; i < model.InPlayPieces.length; i++) {
     square = getSquareById(model.InPlayPieces[i].startPossison);
     square.currentPiece = model.InPlayPieces[i];
+    if (square.currentPiece.type == "king") {
+      model.kingsSquares.push(square);
+    }
   }
 }

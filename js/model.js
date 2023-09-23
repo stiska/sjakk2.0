@@ -16,6 +16,7 @@ const model = {
   legalMoveColor: "#808080",
   selecktedColor: "#6dc544",
   board: [],
+  kingsSquares: [],
   promoteBlackImg: [
     "img/black queen.png",
     "img/black rook.png",

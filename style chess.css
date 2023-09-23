@@ -1,6 +1,6 @@
 body{
     background-color: #1a1a1a;
-    color: #8b8b8b;
+    color: #898989;
 }
 .board-container {
     display: grid;
@@ -43,6 +43,7 @@ body{
     align-items: center;
     border-color: #000000;
     border-style: solid;
+    color: #fefefe;
     padding: 8px;
 }
 
