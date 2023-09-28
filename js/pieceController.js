@@ -41,19 +41,7 @@ function movePiece(id) {
   if (model.squareWithPieceToMove.currentPiece.hasMoved == false) {
     model.squareWithPieceToMove.currentPiece.hasMoved = true;
   }
-  if (
-    squareToMoveTo.currentPiece != null &&
-    squareToMoveTo.currentPiece.type == "king"
-  ) {
-    model.hasWon = model.squareWithPieceToMove.currentPiece.color;
-  }
   squareToMoveTo.currentPiece = model.squareWithPieceToMove.currentPiece;
-  if (
-    squareToMoveTo.currentPiece != null &&
-    squareToMoveTo.currentPiece.type == "king"
-  ) {
-    uppdateKingPossison(squareToMoveTo);
-  }
   model.squareWithPieceToMove.currentPiece = null;
   model.squareWithPieceToMove = null;
   checks(opositCollor(squareToMoveTo.currentPiece.color));
@@ -82,10 +70,25 @@ function checkIfFriendly(i, square) {
     model.board[i].currentPiece != null &&
     model.board[i].currentPiece.color != square.currentPiece.color
   ) {
-    model.board[i].color = model.legalMoveColor;
+    //model.board[i].color = model.legalMoveColor;
     return false;
   } else {
     return true;
+  }
+}
+
+function checkMockMove(square, indexToCheck) {
+  let piece = model.board[indexToCheck].currentPiece;
+  model.board[indexToCheck].currentPiece = square.currentPiece;
+  square.currentPiece = null;
+  if (checks(model.board[indexToCheck].currentPiece.color)) {
+    square.currentPiece = model.board[indexToCheck].currentPiece;
+    model.board[indexToCheck].currentPiece = piece;
+    return true;
+  } else {
+    square.currentPiece = model.board[indexToCheck].currentPiece;
+    model.board[indexToCheck].currentPiece = piece;
+    return false;
   }
 }
 

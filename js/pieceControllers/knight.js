@@ -18,10 +18,15 @@ function knightMove(square, index, expected) {
     getIntId(model.board[index].id[1]) == getIntId(square.id[1]) + expected &&
     model.board[index].currentPiece != null
   ) {
-    checkIfFriendly(index, square);
+    if (
+      checkIfFriendly(index, square) == false &&
+      checkMockMove(square, index) == false
+    ) {
+      model.board[index].color = model.legalMoveColor;
+    }
   } else if (
-    getIntId(model.board[index].id[1]) ==
-    getIntId(square.id[1]) + expected
+    getIntId(model.board[index].id[1]) == getIntId(square.id[1]) + expected &&
+    checkMockMove(square, index) == false
   ) {
     model.board[index].color = model.legalMoveColor;
   }

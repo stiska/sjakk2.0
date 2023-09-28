@@ -17,9 +17,13 @@ function getSquareByPieceId(id) {
 }
 
 function getKingSquareByColor(color) {
-  for (let i = 0; i < model.kingsSquares.length; i++) {
-    if (model.kingsSquares[i].currentPiece.color == color) {
-      return model.kingsSquares[i];
+  for (let i = 0; i < model.board.length; i++) {
+    if (
+      model.board[i].currentPiece != null &&
+      model.board[i].currentPiece.type == "king" &&
+      model.board[i].currentPiece.color == color
+    ) {
+      return model.board[i];
     }
   }
 }
@@ -41,16 +45,6 @@ function switchTurn() {
   if (model.colorToMove == "black") {
     model.colorToMove = "white";
   } else model.colorToMove = "black";
-}
-
-function uppdateKingPossison(squareToMoveTo) {
-  for (let i = 0; i < model.kingsSquares.length; i++) {
-    if (
-      model.kingsSquares[i].currentPiece.id == squareToMoveTo.currentPiece.id
-    ) {
-      model.kingsSquares[i] = squareToMoveTo;
-    }
-  }
 }
 
 function toggleModal() {
