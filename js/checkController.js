@@ -1,3 +1,22 @@
+function checkMate(color) {
+  model.checking = true;
+  model.haveLegalMoves = false;
+  for (let i = 0; i < model.board.length; i++) {
+    if (
+      model.board[i].currentPiece != null &&
+      model.board[i].currentPiece.color == color
+    ) {
+      determinedMove(model.board[i]);
+    }
+  }
+  if (model.haveLegalMoves == false) {
+    console.log(opositCollor(color) + " wins");
+  } else {
+    model.checking = false;
+    model.haveLegalMoves = true;
+  }
+}
+
 function checks(color) {
   let isChecked = false;
   if (horizontalChecks(color)) {
@@ -144,9 +163,6 @@ function checkForThreat(index, color, threat) {
     model.board[index].currentPiece.type == threat &&
     model.board[index].currentPiece.color == color
   ) {
-    console.log(
-      model.board[index].currentPiece.type + " " + model.board[index].id
-    );
     isChecked = true;
   }
   return isChecked;
@@ -215,9 +231,6 @@ function checkLoop(kingSquare, currentPos, endpoint, incremter, threat) {
           model.board[kingSquare.index + counter].currentPiece.color !=
             kingSquare.currentPiece.color
         ) {
-          console.log(
-            threat[j] + " " + model.board[kingSquare.index + counter].id
-          );
           isChecked = true;
         }
       }

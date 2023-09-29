@@ -5,6 +5,8 @@ const model = {
   hasWon: null,
   enPassantIndex: null,
   modal: "none",
+  checking: false,
+  haveLegalMoves: true,
   //inputs
 
   blackColor: "#800000",

@@ -44,7 +44,10 @@ function movePiece(id) {
   squareToMoveTo.currentPiece = model.squareWithPieceToMove.currentPiece;
   model.squareWithPieceToMove.currentPiece = null;
   model.squareWithPieceToMove = null;
-  checks(opositCollor(squareToMoveTo.currentPiece.color));
+  if (checks(opositCollor(squareToMoveTo.currentPiece.color))) {
+    checkMate(opositCollor(squareToMoveTo.currentPiece.color));
+    console.log(model.haveLegalMoves);
+  }
   applyColor();
   switchTurn();
   uppdateView();

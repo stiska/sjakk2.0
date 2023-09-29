@@ -4,14 +4,22 @@ function LongMove(square, i, index, endpoint) {
       checkIfFriendly(i, square) == false &&
       checkMockMove(square, i) == false
     ) {
-      model.board[i].color = model.legalMoveColor;
+      if (model.checking == true) {
+        model.haveLegalMoves = true;
+      } else {
+        model.board[i].color = model.legalMoveColor;
+      }
     }
 
     if (
       model.board[i].currentPiece == null &&
       checkMockMove(square, i) == false
     ) {
-      model.board[i].color = model.legalMoveColor;
+      if (model.checking == true) {
+        model.haveLegalMoves = true;
+      } else {
+        model.board[i].color = model.legalMoveColor;
+      }
     }
     return true;
   } else if (square.id[index] == endpoint) {
@@ -21,11 +29,19 @@ function LongMove(square, i, index, endpoint) {
       checkIfFriendly(i, square) == false &&
       checkMockMove(square, i) == false
     ) {
-      model.board[i].color = model.legalMoveColor;
+      if (model.checking == true) {
+        model.haveLegalMoves = true;
+      } else {
+        model.board[i].color = model.legalMoveColor;
+      }
     }
     return true;
   } else if (checkMockMove(square, i) == false) {
-    model.board[i].color = model.legalMoveColor;
+    if (model.checking == true) {
+      model.haveLegalMoves = true;
+    } else {
+      model.board[i].color = model.legalMoveColor;
+    }
     return false;
   }
 }

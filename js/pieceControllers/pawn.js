@@ -25,7 +25,11 @@ function pawnForward(square, index) {
     model.board[i + index].currentPiece == null &&
     checkMockMove(square, i + index) == false
   ) {
-    model.board[i + index].color = model.legalMoveColor;
+    if (model.checking == true) {
+      model.haveLegalMoves = true;
+    } else {
+      model.board[i + index].color = model.legalMoveColor;
+    }
     return true;
   } else {
     return false;
@@ -41,7 +45,11 @@ function pawnLongForward(square, index) {
     model.board[i + index].currentPiece == null &&
     checkMockMove(square, i + index) == false
   ) {
-    model.board[i + index].color = model.legalMoveColor;
+    if (model.checking == true) {
+      model.haveLegalMoves = true;
+    } else {
+      model.board[i + index].color = model.legalMoveColor;
+    }
   }
 }
 
@@ -52,14 +60,22 @@ function pawnAttack(square, index) {
       checkIfFriendly(i + index, square) == false &&
       checkMockMove(square, i + index) == false
     ) {
-      model.board[i + index].color = model.legalMoveColor;
+      if (model.checking == true) {
+        model.haveLegalMoves = true;
+      } else {
+        model.board[i + index].color = model.legalMoveColor;
+      }
     }
 
     if (
       i + index == model.enPassantIndex &&
       checkMockMove(square, i + index) == false
     ) {
-      model.board[i + index].color = model.legalMoveColor;
+      if (model.checking == true) {
+        model.haveLegalMoves = true;
+      } else {
+        model.board[i + index].color = model.legalMoveColor;
+      }
     }
   }
 }

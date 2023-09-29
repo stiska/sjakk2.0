@@ -22,12 +22,20 @@ function knightMove(square, index, expected) {
       checkIfFriendly(index, square) == false &&
       checkMockMove(square, index) == false
     ) {
-      model.board[index].color = model.legalMoveColor;
+      if (model.checking == true) {
+        model.haveLegalMoves = true;
+      } else {
+        model.board[index].color = model.legalMoveColor;
+      }
     }
   } else if (
     getIntId(model.board[index].id[1]) == getIntId(square.id[1]) + expected &&
     checkMockMove(square, index) == false
   ) {
-    model.board[index].color = model.legalMoveColor;
+    if (model.checking == true) {
+      model.haveLegalMoves = true;
+    } else {
+      model.board[index].color = model.legalMoveColor;
+    }
   }
 }
