@@ -83,4 +83,18 @@ body{
     width: 30%;
     /* Could be more or less, depending on screen size */
 }
+.modal-content-winner{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 20fr 1fr;
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 10px;
+    border: 1px solid #888;
+    width: 30%;
+    /* Could be more or less, depending on screen size */
+}
+
 

@@ -13,14 +13,7 @@ function uppdateViewBoard() {
     /*html*/
     `
     <div class="modal" style="display:${model.modal}">
-      <div class="modal-content" >
-        <div class="promotion-container">
-          <button onclick="promotePawn('queen', 0)">Queen</button>
-          <button onclick="promotePawn('rook', 1)">Rook</button>
-          <button onclick="promotePawn('bishop', 2)">Bishop</button>
-          <button onclick="promotePawn('knight', 3)">Horse</button>
-        </div>
-      </div>
+      ${modalContent()}
     </div>
       <div class="whosTurn">${topBarContent()}</div><br>  
         <div class="board-container">
@@ -52,6 +45,30 @@ function drawPiese(i) {
   let html = ``;
   if (model.board[i].currentPiece != null) {
     html = `<img class="piece" src="${model.board[i].currentPiece.imageLink}" />`;
+  }
+  return html;
+}
+
+function modalContent() {
+  let html = ``;
+  if (model.hasWon == null) {
+    html = /*html*/ `
+    <div class="modal-content" >
+      <div class="promotion-container">
+        <button onclick="promotePawn('queen', 0)">Queen</button>
+        <button onclick="promotePawn('rook', 1)">Rook</button>
+        <button onclick="promotePawn('bishop', 2)">Bishop</button>
+        <button onclick="promotePawn('knight', 3)">Horse</button>
+      </div>
+    </div>`;
+  } else {
+    html = /*html*/ `
+    <div class="modal-content-winner" >
+      <div class="modal-winner" >
+        ${model.hasWon} is the winner 
+      </div> 
+      <button onclick="toggleModal()">X</button>
+    </div>`;
   }
   return html;
 }

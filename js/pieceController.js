@@ -46,11 +46,15 @@ function movePiece(id) {
   model.squareWithPieceToMove = null;
   if (checks(opositCollor(squareToMoveTo.currentPiece.color))) {
     checkMate(opositCollor(squareToMoveTo.currentPiece.color));
-    console.log(model.haveLegalMoves);
   }
-  applyColor();
-  switchTurn();
-  uppdateView();
+  if (model.hasWon == null) {
+    applyColor();
+    switchTurn();
+    uppdateView();
+  }
+  if (model.hasWon != null) {
+    displaywinner();
+  }
 }
 
 function checkPawnPromotion(squareToMoveTo) {

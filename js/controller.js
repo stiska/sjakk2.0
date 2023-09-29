@@ -56,6 +56,13 @@ function toggleModal() {
   uppdateView();
 }
 
+function displaywinner() {
+  applyColor();
+  switchTurn();
+  uppdateView();
+  toggleModal();
+}
+
 function getEndPoint(startPos, incrementer, letter, number) {
   let counter = 0;
   if (

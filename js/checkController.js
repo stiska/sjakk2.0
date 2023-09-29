@@ -10,7 +10,7 @@ function checkMate(color) {
     }
   }
   if (model.haveLegalMoves == false) {
-    console.log(opositCollor(color) + " wins");
+    model.hasWon = opositCollor(color);
   } else {
     model.checking = false;
     model.haveLegalMoves = true;
