@@ -102,6 +102,17 @@ function getIntId(id) {
   return result;
 }
 
+function isCastleSquare(square) {
+  const ids = ["c1", "g1", "c8", "g8"];
+  let result = false;
+  for (let i = 0; i < ids.length; i++) {
+    if (square.id == ids[i]) {
+      result = true;
+    }
+  }
+  return result;
+}
+
 function getIntFromLetter(letter) {
   let result = 0;
   switch (letter) {
@@ -130,7 +141,7 @@ function getIntFromLetter(letter) {
       result = 8;
       break;
     default:
-      console.log("Get Rekt Pleb");
+      console.log("letter does not exist on the board ", letter);
   }
   return result;
 }

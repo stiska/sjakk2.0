@@ -7,6 +7,7 @@ const model = {
   modal: "none",
   checking: false,
   haveLegalMoves: true,
+  canCastle: false,
   //inputs
 
   blackColor: "#800000",

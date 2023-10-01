@@ -38,6 +38,14 @@ function movePiece(id) {
   if (model.squareWithPieceToMove.currentPiece.type == "pawn") {
     setEnPassantIndex(squareToMoveTo);
   }
+  if (
+    model.canCastle == true &&
+    isCastleSquare(squareToMoveTo) &&
+    model.squareWithPieceToMove.currentPiece.type == "king"
+  ) {
+    moveCastleRook(squareToMoveTo.id);
+  }
+  model.canCastle = false;
   if (model.squareWithPieceToMove.currentPiece.hasMoved == false) {
     model.squareWithPieceToMove.currentPiece.hasMoved = true;
   }
@@ -69,6 +77,39 @@ function removeEnPassant() {
     model.board[model.enPassantIndex + 1].currentPiece = null;
   } else {
     model.board[model.enPassantIndex - 1].currentPiece = null;
+  }
+}
+
+function moveCastleRook(id) {
+  let rook;
+  let temp;
+  switch (id) {
+    case "c1":
+      rook = getSquareById("a1");
+      temp = getSquareById("d1");
+      temp.currentPiece = rook.currentPiece;
+      rook.currentPiece = null;
+      break;
+    case "g1":
+      rook = getSquareById("h1");
+      temp = getSquareById("f1");
+      temp.currentPiece = rook.currentPiece;
+      rook.currentPiece = null;
+      break;
+    case "c8":
+      rook = getSquareById("a8");
+      temp = getSquareById("d8");
+      temp.currentPiece = rook.currentPiece;
+      rook.currentPiece = null;
+      break;
+    case "g8":
+      rook = getSquareById("h8");
+      temp = getSquareById("f8");
+      temp.currentPiece = rook.currentPiece;
+      rook.currentPiece = null;
+      break;
+    default:
+      console.log("cant castle");
   }
 }
 
